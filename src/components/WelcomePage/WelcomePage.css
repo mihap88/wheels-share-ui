@@ -34,6 +34,7 @@
     height: 100%;
     padding-top:60px;
     display: flex;
+    background-image: linear-gradient(to bottom, #fff5e6, #ffd699);
 }
 
 .Photo {
@@ -52,4 +53,22 @@ img {
     flex-direction: column;
     text-align: left;
     padding-top: 100px;
+}
+
+.Join {
+    padding-bottom: 30px;
+    font-size: 30px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: bold;
+}
+
+.Register>input {
+    border-radius: 5px;
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+.Register>button {
+    width: 100px;
+    margin-left: 150px;
 }

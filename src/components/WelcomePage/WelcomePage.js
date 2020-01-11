@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './WelcomePage.css';
 
+import {withRouter} from "react-router-dom";
+
 class WelcomePage extends Component {
 
     constructor(props) {
@@ -20,6 +22,12 @@ class WelcomePage extends Component {
         })
     };
 
+    handleLogin = (e) => {
+        e.preventDefault();
+debugger;
+        this.props.history.push('/admin');
+    };
+
     render() {
         return (
             <div className="Container">
@@ -30,16 +38,16 @@ class WelcomePage extends Component {
                     <div className="Login">
                         <input placeholder="E-mail" className="InsertLogin"></input>
                         <input type="password" placeholder="Password" className="InsertLogin"></input>
-                        <button style={{"font-size": "smaller"}}>Login</button>
+                        <button onClick={this.handleLogin} style={{"font-size": "smaller"}}>Login</button>
                     </div>
                 </div>
                 <div className="Content">
                     <div className="Photo">
-                        <img src="/img/welcome-image2.png" />
+                        <img alt="" src="/img/welcome-image2.png" />
                     </div>
 
                     <div className="Register">
-                        <div>Join us</div>
+                        <div className="Join">Join us</div>
                         <input placeholder="Name" />
                         <input placeholder="Surname" />
                         <input onChange={this.handleEmail} placeholder="E-mail" />
@@ -50,9 +58,8 @@ class WelcomePage extends Component {
                 </div>
 
             </div>
-
         );
     }
 }
 
-export default WelcomePage;
+export default withRouter(WelcomePage);
