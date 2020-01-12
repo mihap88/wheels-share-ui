@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import AdminHomePage from './components/AdminHomePage/AdminHomepage';
+import HomeUserPage from './components/HomeUserPage/HomeUserPage';
 import './App.css';
 
 const Welcome = () => (
@@ -15,6 +16,10 @@ const AdminHome = () => (
     <AdminHomePage />
 );
 
+const UserHome = () => (
+    <HomeUserPage />
+);
+
 class App extends Component {
     render() {
         return (
@@ -22,6 +27,7 @@ class App extends Component {
                 <div className="App">
                     <Route exact path="/" component={Welcome}/>
                     <Route path="/admin" component={AdminHome} />
+                    <Route path="/user" component={UserHome} />
                 </div>
             </Router>
         );

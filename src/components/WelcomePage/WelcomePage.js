@@ -43,26 +43,30 @@ class WelcomePage extends Component {
     handleLogin = (e) => {
         e.preventDefault();
 
-        const url = '';
-        const postData = {
-            email: this.state.email,
-            password: this.state.password
-        };
+        const url = 'http://192.168.0.134:8081/services/WheelsShareApp/api' + '/logIn/' + this.state.email
+            + '/' + this.state.password;
 
-        axios.post(url, postData)
-            .then(() => {
+        axios.get(url, {timeout: 10000})
+            .then((response) => {
+                debugger;
+                if (response.data.success === 'NOK') {
+                    alert('Wrong e-mail or password');
 
+                } else if (response.data.success === 'OK' && response.data.adminRights) {
+                    this.props.history.push('/admin');
+
+                } else if (response.data.success === 'OK' && !response.data.adminRights) {
+                    this.props.history.push('/user');
+                }
             })
             .catch(() => {
-
+                alert('Sorry, we have encountered a problem. Please try again');
             });
-
-        this.props.history.push('/admin');
     };
 
-    handleSignup = (e) => {
+    handleSignUp = (e) => {
         e.preventDefault();
-        const url = 'http://192.168.0.134:8081/services/WheelsShareApp/api' + '/snUp';
+        const url = 'http://192.168.0.134:8081/services/WheelsShareApp/api' + '/signUp';
         const postData = {
             emailAddress: this.state.email,
             password: this.state.password,
@@ -71,13 +75,18 @@ class WelcomePage extends Component {
             adminRights: false
         };
 
-        axios.post(url, postData)
+        axios.post(url, postData, {timeout: 10000})
             .then((response) => {
-                console.log(response);
-                this.props.history.push('/');
+                if (response.data === 'OK') {
+                    alert('Congrats! Your user was successfully created');
+                    window.location.reload();
+                } else if (response.data === 'NOK') {
+                    alert('Seems that this e-mail is already used. Please insert another e-mail');
+                }
             })
             .catch(() => {
-                alert('Ne pare rau, nu am putut sa va inregistram. Va rugam incercati din nou');
+                alert('Sorry, we have encountered a problem. Please try again');
+                window.location.reload();
             });
     };
 
@@ -89,8 +98,9 @@ class WelcomePage extends Component {
                         Wheels Share
                     </div>
                     <div className="Login">
-                        <input placeholder="E-mail" className="InsertLogin"></input>
-                        <input type="password" placeholder="Password" className="InsertLogin"></input>
+                        <input onChange={this.handleEmail} placeholder="E-mail" className="InsertLogin"></input>
+                        <input onChange={this.handlePassword} type="password" placeholder="Password"
+                               className="InsertLogin"></input>
                         <button onClick={this.handleLogin} style={{"font-size": "smaller"}}>Login</button>
                     </div>
                 </div>
@@ -105,9 +115,8 @@ class WelcomePage extends Component {
                         <input onChange={this.handleSurname} placeholder="Surname"/>
                         <input onChange={this.handleEmail} placeholder="E-mail"/>
                         <input onChange={this.handlePassword} type="password" placeholder="Password"/>
-                        <button onClick={this.handleSignup}>Sign Up</button>
+                        <button onClick={this.handleSignUp}><i className="fa fa-refresh fa-spin"></i> Sign Up</button>
                     </div>
-
                 </div>
 
             </div>
