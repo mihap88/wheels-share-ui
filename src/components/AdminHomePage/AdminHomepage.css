@@ -27,23 +27,21 @@
 
 .IconWrapper{
     position: relative;
-    float: left;
+    padding-top: 25px;
+    margin-right: 25px;
+    width: 24px;
 }
 
 i {
-    width: 100px;
-    text-align: center;
-    vertical-align: middle;
+    float: left;
 }
 
 .badge{
     background: blue;
     color: white;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top:-7px;
-    right:27px;
+    position: relative;
+    top:-35px;
+    right:-17px;
 }
 
 .Content {

@@ -44,7 +44,7 @@ class AdminHomepage extends Component {
                             <span className="badge">{this.state.inbox_badge}</span>
                         </div>
                         <div className="IconWrapper">
-                            <i onClick={this.handleLogout} className="material-icons">notifications_alert</i>
+                            <i onClick={this.handleLogout} className="material-icons">exit_to_app</i>
                         </div>
                     </div>
                 </div>
