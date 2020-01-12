@@ -49,12 +49,11 @@ class AdminAddItem extends Component {
 
     handleSubmit = () => {
         const postData = this.state;
-
-        const url = WHEELS_SHARE_SERVICE;
+        const url = WHEELS_SHARE_SERVICE + '/admin/addCar';
 
         axios.post(url, postData, {timeout: 1000})
             .then((response) => {
-
+                alert('Congrats! Your item has been added');
             })
             .catch(() => {
                 alert('Something went wrong, please try again later');
@@ -158,6 +157,7 @@ class AdminAddItem extends Component {
                             <div className="col-sm-10">
                                 <select onChange={this.handleSelect} className="form-control input-dim"
                                         name="seatsNumber">
+                                    <option selected>Choose something</option>
                                     <option>2</option>
                                     <option>4</option>
                                     <option>5</option>
@@ -176,7 +176,8 @@ class AdminAddItem extends Component {
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Fuel</label>
                             <div className="col-sm-10">
-                                <select onChange={this.handleSelect} className="form-control input-dim" name="fuel">
+                                <select onChange={this.handleSelect} className="form-control input-dim" name="fuel" placeholder="Choose something">
+                                    <option selected>Choose something</option>
                                     <option>DIESEL</option>
                                     <option>ELECTRIC</option>
                                     <option>GAS</option>
