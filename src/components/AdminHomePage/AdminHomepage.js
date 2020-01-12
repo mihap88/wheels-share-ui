@@ -1,16 +1,31 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {FormControl} from "react-bootstrap";
 import './AdminHomepage.css';
 
 import {withRouter} from "react-router-dom";
+
+const Modal = ({handleClose, show, children}) => {
+    const showHideClassName = show ? "modal display-block" : "modal display-none";
+
+    return (
+        <div className={showHideClassName}>
+            <section className="modal-main">
+                {children}
+                <button onClick={handleClose}>Submit</button>
+            </section>
+        </div>
+    );
+};
 
 class AdminHomepage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            questions_badge: '6',
-            notifications_badge: '5',
+            questions_badge: '',
+            notifications_badge: '',
+            show: false,
         }
     }
 
@@ -18,13 +33,20 @@ class AdminHomepage extends Component {
 
     }
 
-    handleQuestions = () => {
-        alert("Questions")
-    };
-
     handleNotifications = () => {
         alert("Notifs")
     };
+
+    showModal = () => {
+        this.setState({show: true});
+    };
+
+    handleSubmit = () => {
+        //AICI TB FACUT CALL-ul dupa ce dam submit 😀 suma este pe state
+
+        this.setState({show: false});
+    };
+
 
     render() {
         return (
@@ -37,11 +59,11 @@ class AdminHomepage extends Component {
                     </div>
                     <div className="AdminIcons">
                         <div className="IconWrapper">
-                            <i onClick={this.handleNotifications} className="material-icons">notifications_alerts</i>
+                            <i onClick={this.handleNotifications} className="material-icons">notifications_active</i>
                             <span className="badge">{this.state.notifications_badge}</span>
                         </div>
                         <div className="IconWrapper">
-                            <i onClick={this.handleQuestions} className="material-icons">email</i>
+                            <i onClick={this.showModal} className="material-icons">email</i>
                             <span className="badge">{this.state.questions_badge}</span>
                         </div>
                         <div className="IconWrapper">
@@ -49,6 +71,12 @@ class AdminHomepage extends Component {
                         </div>
                     </div>
                 </div>
+                <Modal show={this.state.show} handleClose={this.handleSubmit}>
+                    <FormControl
+                        placeholder="Please insert your sum"
+                    />
+
+                </Modal>
             </div>
         )
     }
