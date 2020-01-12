@@ -20,14 +20,32 @@
     font-weight: bold;
 }
 
-.Content {
-    height: 100%;
-    padding-top:60px;
+.AdminIcons {
+    cursor: pointer;
     display: flex;
 }
 
-.AdminIcons {
+.IconWrapper{
+    position: relative;
+    padding-top: 25px;
+    margin-right: 25px;
+    width: 24px;
+}
+
+i {
+    float: left;
+}
+
+.badge{
+    background: blue;
+    color: white;
+    position: relative;
+    top:-35px;
+    right:-17px;
+}
+
+.Content {
+    height: 100%;
+    padding-top: 60px;
     display: flex;
-    justify-content: space-around;
-    cursor: pointer;
 }
