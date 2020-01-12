@@ -48,18 +48,17 @@ class WelcomePage extends Component {
 
         axios.get(url, {timeout: 10000})
             .then((response) => {
-                debugger;
-                if (response.data.success === 'NOK') {
+                if (response.data.status === 'NOK') {
                     alert('Wrong e-mail or password');
 
-                } else if (response.data.success === 'OK' && response.data.adminRights) {
+                } else if (response.data.status === 'OK' && response.data.user.adminRights) {
                     this.props.history.push('/admin');
 
-                } else if (response.data.success === 'OK' && !response.data.adminRights) {
+                } else if (response.data.status === 'OK' && !response.data.user.adminRights) {
                     this.props.history.push('/user');
                 }
             })
-            .catch(() => {
+            .catch((response) => {
                 alert('Sorry, we have encountered a problem. Please try again');
             });
     };
