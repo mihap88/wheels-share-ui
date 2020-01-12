@@ -20,35 +20,34 @@
     font-weight: bold;
 }
 
+.AdminIcons {
+    cursor: pointer;
+    display: flex;
+}
+
+.IconWrapper{
+    position: relative;
+    float: left;
+}
+
+i {
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badge{
+    background: blue;
+    color: white;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top:-7px;
+    right:27px;
+}
+
 .Content {
     height: 100%;
     padding-top: 60px;
     display: flex;
 }
-
-.AdminIcons {
-    display: flex;
-    justify-content: space-around;
-    cursor: pointer;
-}
-
-.Icon {
-    position: relative;
-    font-size: 60px;
-    padding: 10px;
-}
-
-.Icon[data-count]:after{
-    position: absolute;
-    right: 10%;
-    content: attr(data-count);
-    font-size: 4px;
-    border-radius: 2px;
-    line-height: 1em;
-    color: white;
-    background: rgba(255,0,0,.85);
-    text-align: center;
-    min-width: 1em;
-}
-
-

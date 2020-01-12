@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './AdminHomepage.css';
 
 import {withRouter} from "react-router-dom";
@@ -29,16 +29,23 @@ class AdminHomepage extends Component {
         return (
             <div className="Container">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+                <script src="https://kit.fontawesome.com/yourcode.js"></script>
                 <div className="Navbar">
                     <div className="Name">
                         Wheels Share - Admin
                     </div>
                     <div className="AdminIcons">
-                        <span className="Icon has-badge" data-count={this.state.notifications_badge}>
-                          <i onClick={this.handleNotifications} className="Icon material-icons">notifications_alert</i>
-                        </span>
-                        <i onClick={this.handleInbox} className="material-icons Icon">mail</i>
-                        <i onClick={this.handleLogout} className="material-icons Icon">exit_to_app</i>
+                        <div className="IconWrapper">
+                            <i onClick={this.handleNotifications} className="material-icons">notifications_alert</i>
+                            <span className="badge">{this.state.notifications_badge}</span>
+                        </div>
+                        <div className="IconWrapper">
+                            <i onClick={this.handleInbox} className="material-icons">email</i>
+                            <span className="badge">{this.state.inbox_badge}</span>
+                        </div>
+                        <div className="IconWrapper">
+                            <i onClick={this.handleLogout} className="material-icons">notifications_alert</i>
+                        </div>
                     </div>
                 </div>
             </div>
