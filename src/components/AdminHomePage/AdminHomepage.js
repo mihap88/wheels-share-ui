@@ -1,25 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {FormControl} from "react-bootstrap";
-import './AdminHomepage.css';
 import AdminAddItem from '../AdminAddItem/AdminAddItem';
-import '../../common_css/AdminNavbar.css'
+import AdminQuestions from '../AdminQuestions/AdminQuestions';
 import QUESTIONS_SERVICE from "../../App";
+import './AdminHomepage.css';
+import '../../common_css/AdminNavbar.css'
 
 import {withRouter} from "react-router-dom";
-
-const Modal = ({handleClose, show, children, questions}) => {
-    const showHideClassName = show ? "modal display-block" : "modal display-none";
-    debugger;
-    return (
-        <div className={showHideClassName}>
-            <section className="modal-main">
-                {children}
-                <button onClick={handleClose}>Exit</button>
-            </section>
-        </div>
-    );
-};
 
 class AdminHomepage extends Component {
 
@@ -29,8 +17,8 @@ class AdminHomepage extends Component {
             questions_badge: '',
             questions: [],
             notifications_badge: '',
-            show: false,
-            showAddItemModal: false
+            showAddItemModal: false,
+            showQuestionsModal: false,
         }
     }
 
@@ -76,18 +64,16 @@ class AdminHomepage extends Component {
         alert("Notifs")
     };
 
-    showModal = () => {
-        this.setState({show: true});
+    handleQuestionsModal = () => {
+        this.setState({showQuestionsModal: true});
     };
 
-    handleSubmit = () => {
-        this.setState({show: false});
+    handleCloseQuestionsModal = () => {
+        this.setState({showQuestionsModal: false});
     };
 
-    handleShowAddItem = () => {
-        this.setState({
-            showAddItemModal: true
-        });
+    handleAddItemModal = () => {
+        this.setState({showAddItemModal: true});
     };
 
     render() {
@@ -105,7 +91,7 @@ class AdminHomepage extends Component {
                             <span className="badge">{this.state.notifications_badge}</span>
                         </div>
                         <div className="IconWrapper">
-                            <i onClick={this.showModal} className="material-icons">email</i>
+                            <i onClick={this.handleQuestionsModal} className="material-icons">email</i>
                             <span className="badge">{this.state.questions_badge}</span>
                         </div>
                         <div className="IconWrapper">
@@ -115,7 +101,10 @@ class AdminHomepage extends Component {
                         </div>
                     </div>
                 </div>
-                <Modal show={this.state.show} questions={this.state.questions} handleClose={this.handleSubmit}></Modal>
+                <AdminQuestions
+                    show={this.state.showQuestionsModal}
+                    closeModal={this.handleCloseQuestionsModal}
+                />
                 <AdminAddItem
                     show={this.state.showAddItemModal}
                 />

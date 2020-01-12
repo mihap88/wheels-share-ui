@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../common_css/AdminNavbar.css';
 import './AdminAddItem.css';
+import '../../common_css/AdminModal.css';
 
 class AdminAddItem extends Component {
 
