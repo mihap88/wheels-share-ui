@@ -21,12 +21,12 @@
 }
 
 .AdminIcons {
-    cursor: pointer;
     display: flex;
     align-items: center;
 }
 
 .IconWrapper{
+    cursor: pointer;
     position: relative;
     margin-right: 25px;
     width: 24px;

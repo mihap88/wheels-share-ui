@@ -10,13 +10,52 @@ class UserHomepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: this.props.location.state.email
-
+            email: this.props.location.state.email,
+            home: false,
+            faq: false,
+            current_rental: false,
+            rental_history: false,
         }
     }
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
+    }
+
+    handleHome = () => {
+        this.setState({
+            home: true,
+            faq: false,
+            current_rental: false,
+            rental_history: false,
+        })
+    }
+
+    handleFAQ = () => {
+        this.setState({
+            home: false,
+            faq: true,
+            current_rental: false,
+            rental_history: false,
+        })
+    }
+
+    handleCurrentRental = () => {
+        this.setState({
+            home: false,
+            faq: false,
+            current_rental: true,
+            rental_history: false,
+        })
+    }
+
+    handleRentalHistory = () => {
+        this.setState({
+            home: false,
+            faq: false,
+            current_rental: false,
+            rental_history: true,
+        })
     }
 
     render() {
@@ -37,10 +76,13 @@ class UserHomepage extends Component {
                     </div>
                 </div>
                 <div className="sidenav">
-                    <a href="#about">Home</a>
-                    <a href="#services">FAQ</a>
-                    <a href="#clients">Current rental</a>
-                    <a href="#contact">Rental History</a>
+                    <a onClick={this.handleHome}>Home</a>
+                    <a onClick={this.handleFAQ}>FAQ</a>
+                    <a onClick={this.handleCurrentRental}>Current rental</a>
+                    <a onClick={this.handleRentalHistory}>Rental History</a>
+                </div>
+                <div className="content">
+
                 </div>
             </div>
         );
