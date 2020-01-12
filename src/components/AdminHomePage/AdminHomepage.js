@@ -76,6 +76,10 @@ class AdminHomepage extends Component {
         this.setState({showAddItemModal: true});
     };
 
+    handleCloseAddItemModal = () => {
+        this.setState({showAddItemModal: false});
+    };
+
     render() {
         return (
             <div className="Container">
@@ -101,12 +105,14 @@ class AdminHomepage extends Component {
                         </div>
                     </div>
                 </div>
+                <button style={{"width": "10px", "height": "20px", "padding-top": "100px"}} onClick={this.handleAddItemModal}>temporaryAddItem</button>
                 <AdminQuestions
                     show={this.state.showQuestionsModal}
                     closeModal={this.handleCloseQuestionsModal}
                 />
                 <AdminAddItem
                     show={this.state.showAddItemModal}
+                    closeModal={this.handleCloseAddItemModal}
                 />
             </div>
         )
