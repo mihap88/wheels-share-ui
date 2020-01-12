@@ -3,7 +3,7 @@ import axios from 'axios';
 import {FormControl} from "react-bootstrap";
 import AdminAddItem from '../AdminAddItem/AdminAddItem';
 import AdminQuestions from '../AdminQuestions/AdminQuestions';
-import QUESTIONS_SERVICE from "../../App";
+import {QUESTIONS_SERVICE} from "../../App";
 import './AdminHomepage.css';
 import '../../common_css/AdminNavbar.css'
 
@@ -23,41 +23,16 @@ class AdminHomepage extends Component {
     }
 
     componentDidMount() {
-        // Call to get questions
-
-        this.setState({
-            questions: [
-                {
-                    id: 1,
-                    question: "sfl",
-                },
-
-            ],
-            questions_badge: 1,
-        });
-
-        const request_url = QUESTIONS_SERVICE + '/questions';
-        // const postData = {
-        //     emailAddress: this.state.email,
-        //     password: this.state.password,
-        //     firstName: this.state.name,
-        //     lastName: this.state.surname,
-        //     adminRights: false
-        // };
-        //
-        // axios.get(url, postData, {timeout: 10000})
-        //     .then((response) => {
-        //         if (response.data === 'OK') {
-        //             alert('Congrats! Your user was successfully created');
-        //             window.location.reload();
-        //         } else if (response.data === 'NOK') {
-        //             alert('Seems that this e-mail is already used. Please insert another e-mail');
-        //         }
-        //     })
-        //     .catch(() => {
-        //         alert('Sorry, we have encountered a problem. Please try again');
-        //         window.location.reload();
-        //     });
+        const request_url = QUESTIONS_SERVICE + '/pending-questions';
+        axios.get(request_url, {timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    this.setState({
+                        questions: response.data,
+                        questions_badge: response.data.length == 0 ? '' : response.data.length
+                    });
+                }
+            })
     }
 
     handleNotifications = () => {
