@@ -5,6 +5,14 @@ import {withRouter} from "react-router-dom";
 
 class AdminHomepage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            inbox_badge: '6',
+            notifications_badge: '5',
+        }
+    }
+
     handleInbox = () => {
         alert("Inbox")
     };
@@ -26,9 +34,11 @@ class AdminHomepage extends Component {
                         Wheels Share - Admin
                     </div>
                     <div className="AdminIcons">
-                        <i onClick={this.handleNotifications} className="material-icons">notifications</i>
-                        <i onClick={this.handleInbox} className="material-icons">mail</i>
-                        <i onClick={this.handleLogout} className="material-icons">exit_to_app</i>
+                        <span className="Icon has-badge" data-count={this.state.notifications_badge}>
+                          <i onClick={this.handleNotifications} className="Icon material-icons">notifications_alert</i>
+                        </span>
+                        <i onClick={this.handleInbox} className="material-icons Icon">mail</i>
+                        <i onClick={this.handleLogout} className="material-icons Icon">exit_to_app</i>
                     </div>
                 </div>
             </div>
