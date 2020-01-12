@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './WelcomePage.css';
+import './UserHomepage.css';
 
 class WelcomePage extends Component {
 
