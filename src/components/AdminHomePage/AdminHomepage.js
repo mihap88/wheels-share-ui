@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {FormControl} from "react-bootstrap";
 import './AdminHomepage.css';
+import '../../common_css/AdminNavbar.css'
 
 import {withRouter} from "react-router-dom";
 
-const Modal = ({handleClose, show, children}) => {
+const Modal = ({handleClose, show, children, questions}) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
-
+    debugger;
     return (
         <div className={showHideClassName}>
             <section className="modal-main">
                 {children}
-                <button onClick={handleClose}>Submit</button>
+                <button onClick={handleClose}></button>
             </section>
         </div>
     );
@@ -24,13 +25,48 @@ class AdminHomepage extends Component {
         super(props);
         this.state = {
             questions_badge: '',
+            questions: [],
             notifications_badge: '',
             show: false,
         }
     }
 
     componentDidMount() {
+        // Call to get questions
 
+        this.setState({
+            questions: [
+                {
+                    id: 1,
+                    question: "sfl",
+                },
+
+            ],
+            questions_badge: 1,
+        });
+
+        // + '/questions';
+        // const postData = {
+        //     emailAddress: this.state.email,
+        //     password: this.state.password,
+        //     firstName: this.state.name,
+        //     lastName: this.state.surname,
+        //     adminRights: false
+        // };
+        //
+        // axios.get(url, postData, {timeout: 10000})
+        //     .then((response) => {
+        //         if (response.data === 'OK') {
+        //             alert('Congrats! Your user was successfully created');
+        //             window.location.reload();
+        //         } else if (response.data === 'NOK') {
+        //             alert('Seems that this e-mail is already used. Please insert another e-mail');
+        //         }
+        //     })
+        //     .catch(() => {
+        //         alert('Sorry, we have encountered a problem. Please try again');
+        //         window.location.reload();
+        //     });
     }
 
     handleNotifications = () => {
@@ -42,8 +78,6 @@ class AdminHomepage extends Component {
     };
 
     handleSubmit = () => {
-        //AICI TB FACUT CALL-ul dupa ce dam submit 😀 suma este pe state
-
         this.setState({show: false});
     };
 
@@ -67,16 +101,13 @@ class AdminHomepage extends Component {
                             <span className="badge">{this.state.questions_badge}</span>
                         </div>
                         <div className="IconWrapper">
-                            <i onClick={() => {this.props.history.push('/');}} className="material-icons">exit_to_app</i>
+                            <i onClick={() => {
+                                this.props.history.push('/');
+                            }} className="material-icons">exit_to_app</i>
                         </div>
                     </div>
                 </div>
-                <Modal show={this.state.show} handleClose={this.handleSubmit}>
-                    <FormControl
-                        placeholder="Please insert your sum"
-                    />
-
-                </Modal>
+                <Modal show={this.state.show} questions={this.state.questions} handleClose={this.handleSubmit}></Modal>
             </div>
         )
     }
