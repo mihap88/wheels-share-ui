@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import '../../common_css/AdminNavbar.css';
 import './AdminAddItem.css';
 import '../../common_css/AdminModal.css';
+import axios from 'axios';
+import {WHEELS_SHARE_SERVICE} from '../../App';
 
 class AdminAddItem extends Component {
 
@@ -22,7 +24,8 @@ class AdminAddItem extends Component {
             automaticGearBox: false,
             seatsNumber: 0,
             fuel: '',
-            pricePerDay: 0
+            pricePerDay: 0,
+            photo: ''
         }
     }
 
@@ -44,12 +47,21 @@ class AdminAddItem extends Component {
         })
     };
 
-    handleAddPhoto = (e) => {
-        debugger;
-    };
-
     handleSubmit = () => {
-        console.log(this.state);
+        const postData = this.state;
+
+        const url = WHEELS_SHARE_SERVICE;
+
+        axios.post(url, postData, {timeout: 1000})
+            .then((response) => {
+
+            })
+            .catch(() => {
+                alert('Something went wrong, please try again later');
+            })
+            .finally(() => {
+                this.props.closeModal();
+            })
 
     };
 
@@ -61,20 +73,26 @@ class AdminAddItem extends Component {
         }
         return (
             <div className="modal display-block">
-                <div className="modal-main">
-                    <div>Please add your car details here</div>
-                    <div style={{"text-align": "justify"}}>
+                <div className="modal-main modal-dim">
+                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+                    <div className="topbar">
+                        <div className="questions-title">Please add your car details here</div>
+                        <i onClick={this.props.closeModal} className="exit-button material-icons">clear</i>
+                    </div>
+
+
+                    <div className="modal-content">
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Car name</label>
                             <div className="col-sm-10">
-                                <input onChange={this.handleInputChange} type="text" className="form-control"
+                                <input onChange={this.handleInputChange} type="text" className="form-control input-dim"
                                        placeholder="Car name" name="name"/>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Description</label>
                             <div className="col-sm-10">
-                                <textarea onChange={this.handleInputChange} className="form-control" rows="4"
+                                <textarea onChange={this.handleInputChange} className="form-control input-dim" rows="4"
                                           placeholder="Insert a description" name="description"></textarea>
                             </div>
                         </div>
@@ -138,7 +156,8 @@ class AdminAddItem extends Component {
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Seats number</label>
                             <div className="col-sm-10">
-                                <select onChange={this.handleSelect} className="form-control" name="seatsNumber">
+                                <select onChange={this.handleSelect} className="form-control input-dim"
+                                        name="seatsNumber">
                                     <option>2</option>
                                     <option>4</option>
                                     <option>5</option>
@@ -150,29 +169,25 @@ class AdminAddItem extends Component {
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Price per day</label>
                             <div className="col-sm-10">
-                                <input onChange={this.handleInputChange} type="text" className="form-control"
+                                <input onChange={this.handleInputChange} type="text" className="form-control input-dim"
                                        placeholder="Price per day" name="pricePerDay"/>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Fuel</label>
                             <div className="col-sm-10">
-                                <select onChange={this.handleSelect} className="form-control" name="fuel">
+                                <select onChange={this.handleSelect} className="form-control input-dim" name="fuel">
                                     <option>DIESEL</option>
                                     <option>ELECTRIC</option>
                                     <option>GAS</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="input-group">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="inputGroupFileAddon01">Upload image</span>
-                            </div>
-                            <div className="custom-file">
-                                <input onChange={this.handleAddPhoto} type="file" className="custom-file-input"
-                                       id="inputGroupFile01"
-                                       aria-describedby="inputGroupFileAddon01"/>
-                                <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-form-label">Image url</label>
+                            <div className="col-sm-10">
+                                <input onChange={this.handleInputChange} type="text" className="form-control input-dim"
+                                       placeholder="Image url" name="photo"/>
                             </div>
                         </div>
                         <div className="form-group row">
