@@ -52,10 +52,22 @@ class WelcomePage extends Component {
                     alert('Wrong e-mail or password');
 
                 } else if (response.data.status === 'OK' && response.data.user.adminRights) {
-                    this.props.history.push('/admin');
+                    const location = {
+                        pathname: '/admin',
+                        state: {
+                            email: this.state.email
+                        }
+                    };
+                    this.props.history.push(location);
 
                 } else if (response.data.status === 'OK' && !response.data.user.adminRights) {
-                    this.props.history.push('/user');
+                    const location = {
+                        pathname: '/user',
+                        state: {
+                            email: this.state.email
+                        }
+                    };
+                    this.props.history.push(location);
                 }
             })
             .catch((response) => {

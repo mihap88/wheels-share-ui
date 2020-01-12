@@ -9,8 +9,12 @@ class UserHomepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            email: this.props.location.state.email
 
         }
+    }
+    componentDidMount() {
+        console.log('user email: ' + this.state.email);
     }
 
     render() {

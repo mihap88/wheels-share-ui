@@ -14,6 +14,7 @@ class AdminHomepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            email: this.props.location.state.email,
             questions_badge: '',
             questions: [],
             notifications_badge: '',
@@ -80,7 +81,9 @@ class AdminHomepage extends Component {
                         </div>
                     </div>
                 </div>
-                <button style={{"width": "10px", "height": "20px", "padding-top": "100px"}} onClick={this.handleAddItemModal}>temporaryAddItem</button>
+                <button style={{"width": "10px", "height": "20px", "padding-top": "100px"}}
+                        onClick={this.handleAddItemModal}>temporaryAddItem
+                </button>
                 <AdminQuestions
                     show={this.state.showQuestionsModal}
                     closeModal={this.handleCloseQuestionsModal}
