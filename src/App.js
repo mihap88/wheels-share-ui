@@ -6,7 +6,6 @@ import {
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import AdminHomePage from './components/AdminHomePage/AdminHomepage';
 import UserHomepage from './components/UserHomepage/UserHomepage';
-import AdminAddItem from './components/AdminAddItem/AdminAddItem';
 import './App.css';
 
 export const WHEELS_SHARE_SERVICE = 'http://192.168.0.134:8081/services/WheelsShareApp/api';
@@ -24,10 +23,6 @@ const UserHome = () => (
     <UserHomepage />
 );
 
-const AdminAddCar = () => (
-    <AdminAddItem />
-);
-
 class App extends Component {
     render() {
         return (
@@ -36,7 +31,6 @@ class App extends Component {
                     <Route exact path="/" component={Welcome}/>
                     <Route exact path="/admin" component={AdminHome} />
                     <Route exact path="/user" component={UserHome} />
-                    <Route exact path="/admin/addCar" component={AdminAddCar}/>
                 </div>
             </Router>
         );
