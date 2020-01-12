@@ -3,6 +3,7 @@ import axios from 'axios';
 import {FormControl} from "react-bootstrap";
 import './AdminHomepage.css';
 import '../../common_css/AdminNavbar.css'
+import QUESTIONS_SERVICE from "../../App";
 
 import {withRouter} from "react-router-dom";
 
@@ -45,7 +46,7 @@ class AdminHomepage extends Component {
             questions_badge: 1,
         });
 
-        // + '/questions';
+        const request_url = QUESTIONS_SERVICE + '/questions';
         // const postData = {
         //     emailAddress: this.state.email,
         //     password: this.state.password,
