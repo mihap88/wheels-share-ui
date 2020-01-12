@@ -1,0 +1,29 @@
+.topbar {
+    padding: 5px;
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: dodgerblue;
+}
+
+.questions-title {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.exit-button {
+    cursor: pointer;
+    color: white;
+}
+
+.modal-dim {
+    width: 800px;
+}
+
+.question {
+
+}

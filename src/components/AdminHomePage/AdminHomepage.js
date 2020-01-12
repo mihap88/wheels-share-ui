@@ -87,6 +87,7 @@ class AdminHomepage extends Component {
                 <AdminQuestions
                     show={this.state.showQuestionsModal}
                     closeModal={this.handleCloseQuestionsModal}
+                    questions={this.state.questions}
                 />
                 <AdminAddItem
                     show={this.state.showAddItemModal}

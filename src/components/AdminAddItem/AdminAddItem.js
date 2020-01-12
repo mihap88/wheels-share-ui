@@ -9,7 +9,6 @@ class AdminAddItem extends Component {
         if (!this.props.show) {
             return(
                 <div className="modal display-none">
-
                 </div>
             )
         }
