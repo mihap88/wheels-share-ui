@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import AdminHomePage from './components/AdminHomePage/AdminHomepage';
-import HomeUserPage from './components/HomeUserPage/HomeUserPage';
+import UserHomepage from './components/UserHomepage/UserHomepage';
 import './App.css';
 
 const Welcome = () => (
@@ -17,7 +17,7 @@ const AdminHome = () => (
 );
 
 const UserHome = () => (
-    <HomeUserPage />
+    <UserHomepage />
 );
 
 class App extends Component {

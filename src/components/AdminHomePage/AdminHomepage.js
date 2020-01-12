@@ -21,10 +21,6 @@ class AdminHomepage extends Component {
         alert("Notifs")
     };
 
-    handleLogout = () => {
-        alert("Logout")
-    };
-
     render() {
         return (
             <div className="Container">
@@ -36,7 +32,7 @@ class AdminHomepage extends Component {
                     </div>
                     <div className="AdminIcons">
                         <div className="IconWrapper">
-                            <i onClick={this.handleNotifications} className="material-icons">notifications_alert</i>
+                            <i onClick={this.handleNotifications} className="material-icons">notifications_alerts</i>
                             <span className="badge">{this.state.notifications_badge}</span>
                         </div>
                         <div className="IconWrapper">
@@ -44,7 +40,7 @@ class AdminHomepage extends Component {
                             <span className="badge">{this.state.inbox_badge}</span>
                         </div>
                         <div className="IconWrapper">
-                            <i onClick={this.handleLogout} className="material-icons">exit_to_app</i>
+                            <i onClick={() => {this.props.history.push('/');}} className="material-icons">exit_to_app</i>
                         </div>
                     </div>
                 </div>

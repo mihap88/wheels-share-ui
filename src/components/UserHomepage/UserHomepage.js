@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './HomeUserPage.css';
+import './UserHomepage.css';
 
 import {withRouter} from "react-router-dom";
 
-class HomeUserPage extends Component {
+class UserHomepage extends Component {
 
     constructor(props) {
         super(props);
@@ -22,4 +22,4 @@ class HomeUserPage extends Component {
     }
 }
 
-export default withRouter(HomeUserPage);
+export default withRouter(UserHomepage);
