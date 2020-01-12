@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {FormControl} from "react-bootstrap";
 import './AdminHomepage.css';
+import AdminAddItem from '../AdminAddItem/AdminAddItem';
 import '../../common_css/AdminNavbar.css'
 import QUESTIONS_SERVICE from "../../App";
 
@@ -29,6 +30,7 @@ class AdminHomepage extends Component {
             questions: [],
             notifications_badge: '',
             show: false,
+            showAddItemModal: false
         }
     }
 
@@ -82,6 +84,11 @@ class AdminHomepage extends Component {
         this.setState({show: false});
     };
 
+    handleShowAddItem = () => {
+        this.setState({
+            showAddItemModal: true
+        });
+    };
 
     render() {
         return (
@@ -109,6 +116,9 @@ class AdminHomepage extends Component {
                     </div>
                 </div>
                 <Modal show={this.state.show} questions={this.state.questions} handleClose={this.handleSubmit}></Modal>
+                <AdminAddItem
+                    show={this.state.showAddItemModal}
+                />
             </div>
         )
     }

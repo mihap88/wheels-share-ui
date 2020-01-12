@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
 import '../../common_css/AdminNavbar.css';
+import './AdminAddItem.css';
 
 class AdminAddItem extends Component {
 
     render() {
+        if (!this.props.show) {
+            return(
+                <div className="modal display-none">
+
+                </div>
+            )
+        }
         return (
-            <div>
+            <div className="modal display-block">
+            <div className="modal-main">
                 <form>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
@@ -27,6 +36,7 @@ class AdminAddItem extends Component {
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
+            </div>
             </div>
         )
     }
