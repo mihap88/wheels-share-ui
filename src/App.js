@@ -9,6 +9,9 @@ import UserHomepage from './components/UserHomepage/UserHomepage';
 import AdminAddItem from './components/AdminAddItem/AdminAddItem';
 import './App.css';
 
+export const WHEELS_SHARE_SERVICE = 'http://192.168.0.134:8081/services/WheelsShareApp/api';
+export const QUESTIONS_SERVICE = 'http://192.168.0.134:8082/services/QuestionsService/api';
+
 const Welcome = () => (
     <WelcomePage/>
 );
