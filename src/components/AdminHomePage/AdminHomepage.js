@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import './AdminHomepage.css';
 
 import {withRouter} from "react-router-dom";
@@ -8,13 +9,17 @@ class AdminHomepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inbox_badge: '6',
+            questions_badge: '6',
             notifications_badge: '5',
         }
     }
 
-    handleInbox = () => {
-        alert("Inbox")
+    componentDidMount() {
+
+    }
+
+    handleQuestions = () => {
+        alert("Questions")
     };
 
     handleNotifications = () => {
@@ -36,8 +41,8 @@ class AdminHomepage extends Component {
                             <span className="badge">{this.state.notifications_badge}</span>
                         </div>
                         <div className="IconWrapper">
-                            <i onClick={this.handleInbox} className="material-icons">email</i>
-                            <span className="badge">{this.state.inbox_badge}</span>
+                            <i onClick={this.handleQuestions} className="material-icons">email</i>
+                            <span className="badge">{this.state.questions_badge}</span>
                         </div>
                         <div className="IconWrapper">
                             <i onClick={() => {this.props.history.push('/');}} className="material-icons">exit_to_app</i>
