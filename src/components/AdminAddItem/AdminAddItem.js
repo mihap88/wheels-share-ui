@@ -16,6 +16,7 @@ class AdminAddItem extends Component {
         return (
             <div className="modal display-block">
             <div className="modal-main">
+                <div>Please add your car details here</div>
                 <form>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
