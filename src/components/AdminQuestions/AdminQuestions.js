@@ -66,17 +66,13 @@ class AdminQuestions extends Component {
                         {question_data.question}
                     </div>
                 </div>
-                <div className="answer">
-                    <div className="form-inline">
-                        <div className="form-group mx-sm-3 mb-2">
-                            <label className="sr-only">Password</label>
-                            <input onChange={this.handleAnswer} id="answer" className="form-control"
-                                   placeholder="Type your answer here"/>
-                        </div>
-                        <button onClick={this.sendAnswer} id={question_data.id} className="btn btn-primary mb-2">
-                            Answer question
-                        </button>
-                    </div>
+                <div className="answer form-inline">
+                    <input onChange={this.handleAnswer} id="answer"
+                           className="answer-input form-group mx-sm-3 mb-2 from-control"
+                           placeholder="Type your answer here"/>
+                    <button onClick={this.sendAnswer} id={question_data.id} className="btn btn-primary mb-2">
+                        Answer question
+                    </button>
                 </div>
             </div>
         );
