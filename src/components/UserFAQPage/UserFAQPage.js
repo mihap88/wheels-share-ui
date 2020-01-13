@@ -25,6 +25,14 @@ class UserFAQPage extends Component {
         })
     }
 
+    displayQuestion = (question_data) => {
+        return (
+            <div>
+                question_data.question
+            </div>
+        );
+    }
+
     render() {
         if (!this.props.show) {
             return (
@@ -35,7 +43,9 @@ class UserFAQPage extends Component {
 
         return (
             <div className="page display-block">
-                FAQ
+                {this.state.questions.map((question_data, id) => {
+                    return this.displayQuestion(question_data)
+                })}
             </div>
         )
     }

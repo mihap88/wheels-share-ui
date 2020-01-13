@@ -29,7 +29,7 @@ class UserHomepage extends Component {
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
-
+        debugger;
         // request to get questions
         const questions_request_url = QUESTIONS_SERVICE + '/questions';
         axios.get(questions_request_url, {timeout: 10000})
@@ -119,7 +119,7 @@ class UserHomepage extends Component {
                     <UserCarsList show={this.state.showCarsList}/>
                     <UserRentalHistory show={this.state.showUserRentalHistory}/>
                     <UserCurrentRental show={this.state.showUserCurrentRental}/>
-                    <UserFAQPage show={this.state.showUserFAQPage} questions={this.state.question}/>
+                    <UserFAQPage show={this.state.showUserFAQPage} questions={this.state.questions}/>
                     <UserRentCar show={this.state.showUserRentCar}/>
                 </div>
             </div>
