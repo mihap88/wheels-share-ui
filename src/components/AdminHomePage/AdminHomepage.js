@@ -64,6 +64,7 @@ class AdminHomepage extends Component {
 
     handleCloseAddItemModal = () => {
         this.setState({showAddItemModal: false});
+        window.location.reload();
     };
 
     deleteCar = (e) => {
