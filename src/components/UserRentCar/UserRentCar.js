@@ -36,7 +36,16 @@ class UserRentCar extends Component {
         return (
             <div className="page display-block">
                 <div className="user-page">
-
+                    <div className="car-details-preview-container">
+                        <div className="car-detail-title">{this.state.car.name} (${this.state.car.pricePerDay})</div>
+                        <img className="car-detail-photo" alt=""
+                             src={this.state.car.photo}/>
+                        <div className="car-detail-content">Seats nr: {this.state.car.seatsNumber}, Automatic gearbox <img
+                            style={{"width": "15px"}} alt=""
+                            src={this.state.car.automaticGearBox ? "https://w0.pngwave.com/png/528/278/check-mark-computer-icons-check-tick-s-free-icon-png-clip-art-thumbnail.png" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvSj5yUyCu_btfNxJSNDHmpoB9y3VeDm0qRoSKQ1iyRNDn_yBS&s"}/>
+                            , Fuel: {this.state.car.fuel}
+                        </div>
+                    </div>
                 </div>
             </div>
         )
