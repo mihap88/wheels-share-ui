@@ -88,13 +88,13 @@ class AdminQuestions extends Component {
 
         return (
             <div className="modal display-block">
-                <div className="modal-main modal-dim">
+                <div className="modal-main modal-dim-q">
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
                     <div className="topbar">
                         <div className="questions-title">Pending questions</div>
                         <i onClick={this.props.closeModal} className="exit-button material-icons">clear</i>
                     </div>
-                    <div className="modal-content">
+                    <div className="modal-content-q">
                         {this.state.questions.map((question_data, id) => {
                             return this.displayQuestion(question_data)
                         })}

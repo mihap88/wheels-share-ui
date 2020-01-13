@@ -21,18 +21,20 @@
     color: white;
 }
 
-.modal-dim {
+.modal-dim-q {
     width: 800px;
-    height: 70%;
+    height: 700px;
 }
 
-.modal-content {
+.modal-content-q {
     display: flex;
     flex-direction: column;
     padding-top: 10px;
     padding-bottom: 10px;
     overflow-y:auto;
     height: 100%;
+    margin-bottom: 15px;
+    background:white;
 }
 
 .question-block {
