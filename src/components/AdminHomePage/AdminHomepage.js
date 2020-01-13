@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {FormControl} from "react-bootstrap";
 import AdminAddItem from '../AdminAddItem/AdminAddItem';
 import AdminQuestions from '../AdminQuestions/AdminQuestions';
-import {QUESTIONS_SERVICE} from "../../App";
+import {QUESTIONS_SERVICE, WHEELS_SHARE_SERVICE} from "../../App";
 import './AdminHomepage.css';
 import '../../common_css/AdminNavbar.css'
 
@@ -20,18 +19,29 @@ class AdminHomepage extends Component {
             notifications_badge: '',
             showAddItemModal: false,
             showQuestionsModal: false,
+            cars: []
         }
     }
 
     componentDidMount() {
-        const request_url = QUESTIONS_SERVICE + '/pending-questions';
-        axios.get(request_url, {timeout: 10000})
+        const questions_request_url = QUESTIONS_SERVICE + '/pending-questions';
+        axios.get(questions_request_url, {timeout: 10000})
             .then((response) => {
                 if (response.status === 200) {
                     this.setState({
                         questions: response.data,
                         questions_badge: response.data.length == 0 ? '' : response.data.length
                     });
+                }
+            });
+
+        const cars_request_url = WHEELS_SHARE_SERVICE + '/cars';
+        axios.get(cars_request_url,{timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    this.setState({
+                        cars: response.data
+                    })
                 }
             })
     }
@@ -81,9 +91,17 @@ class AdminHomepage extends Component {
                         </div>
                     </div>
                 </div>
-                <button style={{"width": "10px", "height": "20px", "padding-top": "100px"}}
-                        onClick={this.handleAddItemModal}>temporaryAddItem
-                </button>
+                <div className="admin-page-content">
+                    <button style={{"width": "10px", "height": "20px", "padding-top": "100px"}}
+                            onClick={this.handleAddItemModal}>temporaryAddItem
+                    </button>
+
+                    <div className="car-preview-container">
+
+                    </div>
+
+                </div>
+
                 <AdminQuestions
                     show={this.state.showQuestionsModal}
                     closeModal={this.handleCloseQuestionsModal}
