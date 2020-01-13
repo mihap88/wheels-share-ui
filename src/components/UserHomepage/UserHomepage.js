@@ -23,7 +23,6 @@ class UserHomepage extends Component {
             showUserCurrentRental: false,
             showUserFAQPage: false,
             showUserRentCar: false,
-            questions: [],
             cars: [],
             car: {},
 
@@ -32,17 +31,6 @@ class UserHomepage extends Component {
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
-        // request to get questions
-        const questions_request_url = QUESTIONS_SERVICE + '/questions';
-        axios.get(questions_request_url, {timeout: 10000})
-            .then((response) => {
-                if (response.status === 200) {
-                    this.setState({
-                        questions: response.data,
-                    });
-                }
-            });
-
         // request to get cars
         const cars_request_url = WHEELS_SHARE_SERVICE + '/cars';
         axios.get(cars_request_url, {timeout: 10000})
@@ -146,7 +134,6 @@ class UserHomepage extends Component {
                     <UserCurrentRental show={this.state.showUserCurrentRental}/>
                     <UserFAQPage
                         show={this.state.showUserFAQPage}
-                        questions={this.state.questions}
                     />
                     <UserRentCar
                         show={this.state.showUserRentCar}

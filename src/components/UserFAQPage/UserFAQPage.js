@@ -20,12 +20,7 @@ class UserFAQPage extends Component {
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            questions: this.props.questions,
-        })
+        this.getQuestions();
     }
 
     handleNewQuestion = (q) => {
@@ -34,25 +29,36 @@ class UserFAQPage extends Component {
         })
     };
 
-    sendAnswer = (q) => {
+    getQuestions = () => {
+        const questions_request_url = QUESTIONS_SERVICE + '/questions';
+        axios.get(questions_request_url, {timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    this.setState({
+                        questions: response.data,
+                    });
+                }
+            });
+    }
+
+    addQuestion = (q) => {
         const request_url = QUESTIONS_SERVICE + "/questions/add";
 
         const postData = {
-            user_email_address: this.state.email,
+            userEmailAddress: this.state.email,
             question: this.state.newQuestion,
         };
 
         axios.post(request_url, postData, {timeout: 10000})
             .then((response) => {
-                if (response.data === 'OK') {
-                    
-                    // let input = document.getElementById("answer");
-                    // input.value = "";
+                if (response.statusText === 'Created') {
+                    alert("Your question has been added");
+                    document.getElementById("question").value = "";
                 }
+            }).finally (()=> {
+                this.getQuestions();
             });
     }
-
-
 
     displayQuestion = (question_data) => {
         return (
@@ -82,21 +88,9 @@ class UserFAQPage extends Component {
 
         return (
             <div className="page display-block">
-                {/* <div className="add-question-block">
-                    <input type="submit" value="Add question" required></input>
-                </div> */}
-
-                {/* <div className="add-question-block">
-                    <input onChange={this.handleNewQuestion} id="question"
-                           className="question-input form-group mx-sm-3 mb-2 from-control"
-                           placeholder="Ask a new question here"/>
-                    <button onClick={this.sendAnswer} id={10} className="btn btn-primary mb-2">
-                        Add question
-                    </button>
-                </div> */}
                 <div className="add-question-block">
                     <div >
-                        <button onClick={this.sendAnswer} id={10} className="btn btn-primary mb-2">
+                        <button onClick={this.addQuestion} className="btn btn-primary mb-2">
                             Add question
                         </button>
                     </div>
@@ -106,7 +100,9 @@ class UserFAQPage extends Component {
                             onChange={this.handleNewQuestion} 
                             className="new-question-textarea" 
                             aria-label="With textarea"
-                            rows="3">
+                            rows="3"
+                            id="question"
+                            placeholder="Add a new question here">
                         </textarea>
                     </div>
                     
