@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import './UserFAQPage.css';
+import './UserRentCar.css';
 import '../../common_css/UserNavbar.css';
 import '../../common_css/UserSidebar.css';
 
 import {withRouter} from "react-router-dom";
 
-class UserFAQPage extends Component {
+class UserRentCar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            questions: [],
+            car: {},
         }
     }
 
@@ -20,17 +20,10 @@ class UserFAQPage extends Component {
     }
 
     componentWillReceiveProps(props) {
+        debugger;
         this.setState({
-            questions: this.props.questions,
+            car: this.props.car,
         })
-    }
-
-    displayQuestion = (question_data) => {
-        return (
-            <div>
-                question_data.question
-            </div>
-        );
     }
 
     render() {
@@ -43,12 +36,11 @@ class UserFAQPage extends Component {
 
         return (
             <div className="page display-block">
-                {this.state.questions.map((question_data, id) => {
-                    return this.displayQuestion(question_data)
-                })}
+                alalalal
+                {this.state.car.name}
             </div>
         )
     }
 }
 
-export default withRouter(UserFAQPage);
+export default withRouter(UserRentCar);

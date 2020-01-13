@@ -18,6 +18,12 @@ class UserCarsList extends Component {
         console.log('user email: ' + this.state.email);
     }
 
+    componentWillReceiveProps(props) {
+        this.setState({
+            cars: this.props.cars,
+        })
+    }
+
     render() {
         if (!this.props.show) {
             return (
@@ -28,7 +34,24 @@ class UserCarsList extends Component {
 
         return (
             <div className="page display-block">
-                UserCarsList
+                <button onClick={() => this.props.handleDetails(
+                {
+                    'name': 'Alfa Romeo',
+                    'description': 'Mito',
+                    'airConditioning': true,
+                    'radio': false,
+                    'abs': false,
+                    'electricWindows': true,
+                    'centralLocking': false,
+                    'bigTrunk': false,
+                    'fuelEfficiency': false,
+                    'familySize': false,
+                    'automaticGearBox': true,
+                    'seatsNumber': 0,
+                    'fuel': '',
+                    'pricePerDay': 0,
+                    'photo': ''
+                })}>Rent Car</button>
             </div>
         )
     }
