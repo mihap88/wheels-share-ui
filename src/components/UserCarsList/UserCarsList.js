@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import './UserFAQPage.css';
+import './UserCarsList.css';
 import '../../common_css/UserNavbar.css';
 import '../../common_css/UserSidebar.css';
 
 import {withRouter} from "react-router-dom";
 
-class UserFAQPage extends Component {
+class UserCarsList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            show: false
         }
     }
 
@@ -29,10 +28,10 @@ class UserFAQPage extends Component {
 
         return (
             <div className="page display-block">
-                FAQ
+                UserCarsList
             </div>
         )
     }
 }
 
-export default withRouter(UserFAQPage);
+export default withRouter(UserCarsList);

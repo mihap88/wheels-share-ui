@@ -4,6 +4,10 @@ import '../../common_css/UserNavbar.css';
 import '../../common_css/UserSidebar.css';
 
 import {withRouter} from "react-router-dom";
+import UserRentalHistory from "../UserRentalHistory/UserRentalHistory"
+import UserCurrentRental from "../UserCurrentRental/UserCurrentRental"
+import UserFAQPage from "../UserFAQPage/UserFAQPage"
+import UserCarsList from "../UserCarsList/UserCarsList"
 
 class UserHomepage extends Component {
 
@@ -11,10 +15,10 @@ class UserHomepage extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            home: false,
-            faq: false,
-            current_rental: false,
-            rental_history: false,
+            showCarsList: true,
+            showUserRentalHistory: false,
+            showUserCurrentRental: false,
+            showUserFAQPage: false,
         }
     }
 
@@ -24,37 +28,37 @@ class UserHomepage extends Component {
 
     handleHome = () => {
         this.setState({
-            home: true,
-            faq: false,
-            current_rental: false,
-            rental_history: false,
+            showCarsList: true,
+            showUserRentalHistory: false,
+            showUserCurrentRental: false,
+            showUserFAQPage: false,
         })
     }
 
     handleFAQ = () => {
         this.setState({
-            home: false,
-            faq: true,
-            current_rental: false,
-            rental_history: false,
+            showCarsList: false,
+            showUserRentalHistory: false,
+            showUserCurrentRental: false,
+            showUserFAQPage: true,
         })
     }
 
     handleCurrentRental = () => {
         this.setState({
-            home: false,
-            faq: false,
-            current_rental: true,
-            rental_history: false,
+            showCarsList: false,
+            showUserRentalHistory: false,
+            showUserCurrentRental: true,
+            showUserFAQPage: false,
         })
     }
 
     handleRentalHistory = () => {
         this.setState({
-            home: false,
-            faq: false,
-            current_rental: false,
-            rental_history: true,
+            showCarsList: false,
+            showUserRentalHistory: true,
+            showUserCurrentRental: false,
+            showUserFAQPage: false,
         })
     }
 
@@ -63,16 +67,14 @@ class UserHomepage extends Component {
             <div className="Container">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
                 <script src="https://kit.fontawesome.com/yourcode.js"></script>
-                <div className="Navbar">
-                    <div className="Name">
-                        Wheels Share - Admin
+                <div className="UserNavbar">
+                    <div className="UserName">
+                        Wheels Share
                     </div>
-                    <div className="LogoutIcon">
-                        <div className="IconWrapper">
-                            <i onClick={() => {
-                                this.props.history.push('/');
-                            }} className="material-icons">exit_to_app</i>
-                        </div>
+                    <div className="UserIconWrapper">
+                        <i onClick={() => {
+                            this.props.history.push('/');
+                        }} className="material-icons">exit_to_app</i>
                     </div>
                 </div>
                 <div className="sidenav">
@@ -81,8 +83,11 @@ class UserHomepage extends Component {
                     <a onClick={this.handleCurrentRental}>Current rental</a>
                     <a onClick={this.handleRentalHistory}>Rental History</a>
                 </div>
-                <div className="content">
-
+                <div className="content-userpage">
+                    <UserCarsList show={this.state.showCarsList}/>
+                    <UserRentalHistory show={this.state.showUserRentalHistory}/>
+                    <UserCurrentRental show={this.state.showUserCurrentRental}/>
+                    <UserFAQPage show={this.state.showUserFAQPage}/>
                 </div>
             </div>
         );
