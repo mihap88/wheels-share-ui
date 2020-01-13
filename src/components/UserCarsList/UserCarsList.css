@@ -1,0 +1,47 @@
+.user-page {
+    height: auto;
+    min-height: 1000px;
+    width: 100%;
+    padding-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: linear-gradient(to bottom, #fff5e6, #ffd699);
+}
+
+.user-car-preview-container {
+    width: 250px;
+    height: 350px;
+    margin-left: 50px;
+    margin-top: 50px;
+    padding: 10px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: white;
+}
+
+.user-car-detail-title {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgba(0, 0, 0, 0.6);;
+    font-size: 18px;
+    font-weight: bold;
+    height: 20%;
+    padding-top: 20px;
+}
+
+.user-car-detail-photo {
+    width: 140px;
+    height: 140px;
+}
+
+.user-car-detail-content {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgba(0, 0, 0, 0.6);;
+    font-size: 15px;
+    padding-top: 30px;
+}
+
+.user-car-detail-button {
+    margin-top: 12px;
+
+}

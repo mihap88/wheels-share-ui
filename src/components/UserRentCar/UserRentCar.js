@@ -11,11 +11,18 @@ class UserRentCar extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
+            car: {},
         }
     }
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            car: this.props.car,
+        })
     }
 
     render() {
@@ -28,7 +35,9 @@ class UserRentCar extends Component {
 
         return (
             <div className="page display-block">
-                rent car
+                <div className="user-page">
+
+                </div>
             </div>
         )
     }

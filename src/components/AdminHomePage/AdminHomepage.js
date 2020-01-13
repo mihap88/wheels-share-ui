@@ -30,13 +30,13 @@ class AdminHomepage extends Component {
                 if (response.status === 200) {
                     this.setState({
                         questions: response.data,
-                        questions_badge: response.data.length == 0 ? '' : response.data.length
+                        questions_badge: response.data.length === 0 ? '' : response.data.length
                     });
                 }
             });
 
         const cars_request_url = WHEELS_SHARE_SERVICE + '/cars';
-        axios.get(cars_request_url,{timeout: 10000})
+        axios.get(cars_request_url, {timeout: 10000})
             .then((response) => {
                 if (response.status === 200) {
                     this.setState({
@@ -64,6 +64,40 @@ class AdminHomepage extends Component {
 
     handleCloseAddItemModal = () => {
         this.setState({showAddItemModal: false});
+        window.location.reload();
+    };
+
+    deleteCar = (e) => {
+        const url = WHEELS_SHARE_SERVICE + '/admin/cars/delete/' + e.target.id;
+
+        axios.delete(url, {timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    alert("The item has been deleted");
+                    window.location.reload();
+                }
+
+            })
+            .catch(() => {
+                alert("Sorry, something went wrong. Please try again later");
+            })
+
+    };
+
+    renderCarDetail = (car) => {
+        return (
+            <div className="car-preview-container">
+                <div className="car-detail-title">{car.name} (${car.pricePerDay})</div>
+                <img className="car-detail-photo" alt=""
+                     src={car.photo}/>
+                <div className="car-detail-content">Seats nr: {car.seatsNumber}, Automatic gearbox <img
+                    style={{"width": "15px"}} alt=""
+                    src={car.automaticGearBox ? "https://w0.pngwave.com/png/528/278/check-mark-computer-icons-check-tick-s-free-icon-png-clip-art-thumbnail.png" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvSj5yUyCu_btfNxJSNDHmpoB9y3VeDm0qRoSKQ1iyRNDn_yBS&s"}/>
+                    , Fuel: {car.fuel}
+                </div>
+                <button onClick={this.deleteCar} className="car-detail-button btn btn-primary" id={car.id}>Delete item</button>
+            </div>
+        );
     };
 
     render() {
@@ -92,102 +126,15 @@ class AdminHomepage extends Component {
                     </div>
                 </div>
                 <div className="admin-page-content">
-                    {/*<button style={{"width": "10px", "height": "20px", "padding-top": "100px"}}*/}
-                            {/*onClick={this.handleAddItemModal}>temporaryAddItem*/}
-                    {/*</button>*/}
-
                     <div className="car-preview-container">
                         <div className="add-item-title">Add new vehicle</div>
-                        <img onClick={this.handleAddItemModal} className="add-item-photo" alt="" src="/img/add-item.png"/>
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
-                    </div>
-                    <div className="car-preview-container">
-
+                        <img onClick={this.handleAddItemModal} className="add-item-photo" alt=""
+                             src="/img/add-item.png"/>
                     </div>
 
+                    {this.state.cars.map((car, key) => {
+                        return this.renderCarDetail(car)
+                    })}
 
                 </div>
 
