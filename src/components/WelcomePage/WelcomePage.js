@@ -118,7 +118,7 @@ class WelcomePage extends Component {
                 </div>
                 <div className="Content">
                     <div className="Photo">
-                        <img alt="" src="/img/welcome-image2.png"/>
+                        <img className="img-style" alt="" src="/img/welcome-image2.png"/>
                     </div>
 
                     <div className="Register">
