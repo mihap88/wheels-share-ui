@@ -92,13 +92,102 @@ class AdminHomepage extends Component {
                     </div>
                 </div>
                 <div className="admin-page-content">
-                    <button style={{"width": "10px", "height": "20px", "padding-top": "100px"}}
-                            onClick={this.handleAddItemModal}>temporaryAddItem
-                    </button>
+                    {/*<button style={{"width": "10px", "height": "20px", "padding-top": "100px"}}*/}
+                            {/*onClick={this.handleAddItemModal}>temporaryAddItem*/}
+                    {/*</button>*/}
 
+                    <div className="car-preview-container">
+                        <div className="add-item-title">Add new vehicle</div>
+                        <img onClick={this.handleAddItemModal} className="add-item-photo" alt="" src="/img/add-item.png"/>
+                    </div>
                     <div className="car-preview-container">
 
                     </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+                    <div className="car-preview-container">
+
+                    </div>
+
 
                 </div>
 
