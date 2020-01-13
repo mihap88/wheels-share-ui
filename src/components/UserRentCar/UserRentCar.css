@@ -1,0 +1,36 @@
+.rent-car-preview-container {
+    width: 600px;
+    height: 600px;
+    margin-left: 50px;
+    margin-top: 50px;
+    padding: 10px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: white;
+}
+
+.rent-car-detail-title {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgba(0, 0, 0, 0.6);;
+    font-size: 18px;
+    font-weight: bold;
+    height: 20%;
+    padding-top: 20px;
+}
+
+.rent-car-detail-photo {
+    width: 550px;
+    height: 380px;
+}
+
+.rent-car-detail-content {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgba(0, 0, 0, 0.6);;
+    font-size: 15px;
+    padding-top: 30px;
+}
+
+.rent-car-date-picker {
+    width: 100px;
+    height: 100px;
+    z-index: 0;
+}

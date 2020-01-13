@@ -13,6 +13,7 @@
     align-items: center;
     padding-right: 20px;
     padding-left: 250px;
+    z-index: 1;
 }
 
 .UserName {
