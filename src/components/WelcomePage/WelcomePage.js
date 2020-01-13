@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './WelcomePage.css';
+import {WHEELS_SHARE_SERVICE} from "../../App";
 
 import {withRouter} from "react-router-dom";
 
@@ -43,7 +44,7 @@ class WelcomePage extends Component {
     handleLogin = (e) => {
         e.preventDefault();
 
-        const url = 'http://192.168.0.134:8081/services/WheelsShareApp/api' + '/logIn/' + this.state.email
+        const url = WHEELS_SHARE_SERVICE + '/logIn/' + this.state.email
             + '/' + this.state.password;
 
         axios.get(url, {timeout: 10000})
@@ -77,7 +78,7 @@ class WelcomePage extends Component {
 
     handleSignUp = (e) => {
         e.preventDefault();
-        const url = 'http://192.168.0.134:8081/services/WheelsShareApp/api' + '/signUp';
+        const url = WHEELS_SHARE_SERVICE + '/signUp';
         const postData = {
             emailAddress: this.state.email,
             password: this.state.password,
