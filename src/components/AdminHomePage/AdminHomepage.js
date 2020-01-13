@@ -30,7 +30,7 @@ class AdminHomepage extends Component {
                 if (response.status === 200) {
                     this.setState({
                         questions: response.data,
-                        questions_badge: response.data.length == 0 ? '' : response.data.length
+                        questions_badge: response.data.length === 0 ? '' : response.data.length
                     });
                 }
             });
@@ -71,7 +71,7 @@ class AdminHomepage extends Component {
 
         axios.delete(url, {timeout: 10000})
             .then((response) => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     alert("The item has been deleted");
                     window.location.reload();
                 }

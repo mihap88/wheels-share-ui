@@ -20,7 +20,6 @@ class UserRentCar extends Component {
     }
 
     componentWillReceiveProps(props) {
-        debugger;
         this.setState({
             car: this.props.car,
         })
@@ -36,8 +35,9 @@ class UserRentCar extends Component {
 
         return (
             <div className="page display-block">
-                alalalal
-                {this.state.car.name}
+                <div className="user-page">
+
+                </div>
             </div>
         )
     }

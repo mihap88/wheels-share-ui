@@ -18,7 +18,7 @@ class UserHomepage extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            showCarsList: true,
+            showCarsList: false,
             showUserRentalHistory: false,
             showUserCurrentRental: false,
             showUserFAQPage: false,
@@ -52,8 +52,14 @@ class UserHomepage extends Component {
                         cars: response.data,
                     });
                 }
-            });
+            })
+            .finally(() => {
+                this.setState({
+                    showCarsList: true,
+                })
+            })
     }
+
 
     handleHome = () => {
         this.setState({

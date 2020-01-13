@@ -11,6 +11,7 @@ class UserCarsList extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
+            cars: []
         }
     }
 
@@ -20,9 +21,27 @@ class UserCarsList extends Component {
 
     componentWillReceiveProps(props) {
         this.setState({
-            cars: this.props.cars,
+            cars: this.props.cars
         })
     }
+
+    renderCarDetail = (car) => {
+        return (
+            <div className="user-car-preview-container">
+                <div className="user-car-detail-title">{car.name} (${car.pricePerDay})</div>
+                <img className="user-car-detail-photo" alt=""
+                     src={car.photo}/>
+                <div className="user-car-detail-content">Seats nr: {car.seatsNumber}, Automatic gearbox <img
+                    style={{"width": "15px"}} alt=""
+                    src={car.automaticGearBox ? "https://w0.pngwave.com/png/528/278/check-mark-computer-icons-check-tick-s-free-icon-png-clip-art-thumbnail.png" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvSj5yUyCu_btfNxJSNDHmpoB9y3VeDm0qRoSKQ1iyRNDn_yBS&s"}/>
+                    , Fuel: {car.fuel}
+                </div>
+                <button onClick={() => this.props.handleDetails(car)} className="user-car-detail-button btn btn-primary"
+                        id={car.id}>See car
+                </button>
+            </div>
+        );
+    };
 
     render() {
         if (!this.props.show) {
@@ -34,24 +53,11 @@ class UserCarsList extends Component {
 
         return (
             <div className="page display-block">
-                <button onClick={() => this.props.handleDetails(
-                {
-                    'name': 'Alfa Romeo',
-                    'description': 'Mito',
-                    'airConditioning': true,
-                    'radio': false,
-                    'abs': false,
-                    'electricWindows': true,
-                    'centralLocking': false,
-                    'bigTrunk': false,
-                    'fuelEfficiency': false,
-                    'familySize': false,
-                    'automaticGearBox': true,
-                    'seatsNumber': 0,
-                    'fuel': '',
-                    'pricePerDay': 0,
-                    'photo': ''
-                })}>Rent Car</button>
+                <div className="user-page">
+                    {this.state.cars.map((car, key) => {
+                        return this.renderCarDetail(car)
+                    })}
+                </div>
             </div>
         )
     }
