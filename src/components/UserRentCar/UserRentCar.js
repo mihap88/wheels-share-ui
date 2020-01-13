@@ -35,10 +35,11 @@ class UserRentCar extends Component {
 
         return (
             <div className="page display-block">
+
                 <div className="user-page">
-                    <div className="car-details-preview-container">
-                        <div className="car-detail-title">{this.state.car.name} (${this.state.car.pricePerDay})</div>
-                        <img className="car-detail-photo" alt=""
+                    <div className="rent-car-preview-container">
+                        <div className="rent-car-detail-title">{this.state.car.name} (${this.state.car.pricePerDay})</div>
+                        <img className="rent-car-detail-photo" alt=""
                              src={this.state.car.photo}/>
                         <div className="car-detail-content">Seats nr: {this.state.car.seatsNumber}, Automatic gearbox <img
                             style={{"width": "15px"}} alt=""
@@ -46,6 +47,12 @@ class UserRentCar extends Component {
                             , Fuel: {this.state.car.fuel}
                         </div>
                     </div>
+                    <div className="input-group input-daterange">
+                        <input type="text" className="form-control" value="2012-04-05"/>
+                            <div className="input-group-addon">to</div>
+                            <input type="text" className="form-control" value="2012-04-19"/>
+                    </div>
+
                 </div>
             </div>
         )
