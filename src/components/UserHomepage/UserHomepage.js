@@ -4,6 +4,7 @@ import '../../common_css/UserNavbar.css';
 import '../../common_css/UserSidebar.css';
 
 import {withRouter} from "react-router-dom";
+import {UserRentalHistory} from "../UserRentalHistory/UserRentalHistory"
 
 class UserHomepage extends Component {
 
@@ -11,10 +12,10 @@ class UserHomepage extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            home: false,
-            faq: false,
-            current_rental: false,
-            rental_history: false,
+            showUserHomepage: false,
+            showUserRentalHistory: false,
+            showUserCurrentRental: false,
+            showUserFAQPage: false,
         }
     }
 
@@ -24,37 +25,37 @@ class UserHomepage extends Component {
 
     handleHome = () => {
         this.setState({
-            home: true,
-            faq: false,
-            current_rental: false,
-            rental_history: false,
+            showUserHomepage: true,
+            showUserRentalHistory: false,
+            showUserCurrentRental: false,
+            showUserFAQPage: false,
         })
     }
 
     handleFAQ = () => {
         this.setState({
-            home: false,
-            faq: true,
-            current_rental: false,
-            rental_history: false,
+            showUserHomepage: false,
+            showUserRentalHistory: true,
+            showUserCurrentRental: false,
+            showUserFAQPage: false,
         })
     }
 
     handleCurrentRental = () => {
         this.setState({
-            home: false,
-            faq: false,
-            current_rental: true,
-            rental_history: false,
+            showUserHomepage: false,
+            showUserRentalHistory: false,
+            showUserCurrentRental: true,
+            showUserFAQPage: false,
         })
     }
 
     handleRentalHistory = () => {
         this.setState({
-            home: false,
-            faq: false,
-            current_rental: false,
-            rental_history: true,
+            showUserHomepage: false,
+            showUserRentalHistory: false,
+            showUserCurrentRental: false,
+            showUserFAQPage: true,
         })
     }
 
@@ -65,7 +66,7 @@ class UserHomepage extends Component {
                 <script src="https://kit.fontawesome.com/yourcode.js"></script>
                 <div className="Navbar">
                     <div className="Name">
-                        Wheels Share - Admin
+                        Wheels Share
                     </div>
                     <div className="LogoutIcon">
                         <div className="IconWrapper">
@@ -82,11 +83,13 @@ class UserHomepage extends Component {
                     <a onClick={this.handleRentalHistory}>Rental History</a>
                 </div>
                 <div className="content">
-
+                    <UserRentalHistory show={this.state.showUserRentalHistory}/>
+                    <UserRentalHistory show={this.state.showUserCurrentRental}/>
+                    <UserRentalHistory show={this.state.showUserFAQPage}/>
                 </div>
             </div>
         );
     }
 }
 
-export default withRouter(UserHomepage);
+export default withRouter(UserHomePage);

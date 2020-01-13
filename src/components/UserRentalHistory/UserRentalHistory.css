@@ -1,0 +1,15 @@
+.page {
+    position: fixed;
+    margin-top: 60px;
+    margin-left: 250px;
+    background: dodgerblue;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
