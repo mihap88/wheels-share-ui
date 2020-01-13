@@ -4,7 +4,10 @@ import '../../common_css/UserNavbar.css';
 import '../../common_css/UserSidebar.css';
 
 import {withRouter} from "react-router-dom";
-import {UserRentalHistory} from "../UserRentalHistory/UserRentalHistory"
+import UserRentalHistory from "../UserRentalHistory/UserRentalHistory"
+import UserCurrentRental from "../UserCurrentRental/UserCurrentRental"
+import UserFAQPage from "../UserFAQPage/UserFAQPage"
+import UserCarsList from "../UserCarsList/UserCarsList"
 
 class UserHomepage extends Component {
 
@@ -12,7 +15,7 @@ class UserHomepage extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            showUserHomepage: false,
+            showCarsList: true,
             showUserRentalHistory: false,
             showUserCurrentRental: false,
             showUserFAQPage: false,
@@ -25,7 +28,7 @@ class UserHomepage extends Component {
 
     handleHome = () => {
         this.setState({
-            showUserHomepage: true,
+            showCarsList: true,
             showUserRentalHistory: false,
             showUserCurrentRental: false,
             showUserFAQPage: false,
@@ -34,16 +37,16 @@ class UserHomepage extends Component {
 
     handleFAQ = () => {
         this.setState({
-            showUserHomepage: false,
-            showUserRentalHistory: true,
+            showCarsList: false,
+            showUserRentalHistory: false,
             showUserCurrentRental: false,
-            showUserFAQPage: false,
+            showUserFAQPage: true,
         })
     }
 
     handleCurrentRental = () => {
         this.setState({
-            showUserHomepage: false,
+            showCarsList: false,
             showUserRentalHistory: false,
             showUserCurrentRental: true,
             showUserFAQPage: false,
@@ -52,10 +55,10 @@ class UserHomepage extends Component {
 
     handleRentalHistory = () => {
         this.setState({
-            showUserHomepage: false,
-            showUserRentalHistory: false,
+            showCarsList: false,
+            showUserRentalHistory: true,
             showUserCurrentRental: false,
-            showUserFAQPage: true,
+            showUserFAQPage: false,
         })
     }
 
@@ -82,14 +85,15 @@ class UserHomepage extends Component {
                     <a onClick={this.handleCurrentRental}>Current rental</a>
                     <a onClick={this.handleRentalHistory}>Rental History</a>
                 </div>
-                <div className="content">
+                <div className="content-userpage">
+                    <UserCarsList show={this.state.showCarsList}/>
                     <UserRentalHistory show={this.state.showUserRentalHistory}/>
-                    <UserRentalHistory show={this.state.showUserCurrentRental}/>
-                    <UserRentalHistory show={this.state.showUserFAQPage}/>
+                    <UserCurrentRental show={this.state.showUserCurrentRental}/>
+                    <UserFAQPage show={this.state.showUserFAQPage}/>
                 </div>
             </div>
         );
     }
 }
 
-export default withRouter(UserHomePage);
+export default withRouter(UserHomepage);
