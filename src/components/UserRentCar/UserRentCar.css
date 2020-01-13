@@ -28,3 +28,9 @@
     font-size: 15px;
     padding-top: 30px;
 }
+
+.rent-car-date-picker {
+    width: 100px;
+    height: 100px;
+    z-index: 0;
+}
