@@ -67,16 +67,14 @@ class UserHomepage extends Component {
             <div className="Container">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
                 <script src="https://kit.fontawesome.com/yourcode.js"></script>
-                <div className="Navbar">
-                    <div className="Name">
+                <div className="UserNavbar">
+                    <div className="UserName">
                         Wheels Share
                     </div>
-                    <div className="LogoutIcon">
-                        <div className="IconWrapper">
-                            <i onClick={() => {
-                                this.props.history.push('/');
-                            }} className="material-icons">exit_to_app</i>
-                        </div>
+                    <div className="UserIconWrapper">
+                        <i onClick={() => {
+                            this.props.history.push('/');
+                        }} className="material-icons">exit_to_app</i>
                     </div>
                 </div>
                 <div className="sidenav">
