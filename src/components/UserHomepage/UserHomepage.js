@@ -9,7 +9,7 @@ import UserCurrentRental from "../UserCurrentRental/UserCurrentRental"
 import UserFAQPage from "../UserFAQPage/UserFAQPage"
 import UserCarsList from "../UserCarsList/UserCarsList"
 import UserRentCar from "../UserRentCar/UserRentCar"
-import {QUESTIONS_SERVICE} from "../../App";
+import {QUESTIONS_SERVICE, WHEELS_SHARE_SERVICE} from "../../App";
 import axios from "axios";
 
 class UserHomepage extends Component {
@@ -24,12 +24,14 @@ class UserHomepage extends Component {
             showUserFAQPage: false,
             showUserRentCar: false,
             questions: [],
+            cars: [],
+            car: {},
+
         }
     }
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
-        debugger;
         // request to get questions
         const questions_request_url = QUESTIONS_SERVICE + '/questions';
         axios.get(questions_request_url, {timeout: 10000})
@@ -42,6 +44,15 @@ class UserHomepage extends Component {
             });
 
         // request to get cars
+        const cars_request_url = WHEELS_SHARE_SERVICE + '/cars';
+        axios.get(cars_request_url, {timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    this.setState({
+                        cars: response.data,
+                    });
+                }
+            });
     }
 
     handleHome = () => {
@@ -84,13 +95,17 @@ class UserHomepage extends Component {
         })
     }
 
-    handleDetailsClick = () => {
+    handleDetailsClick = (carDetails) => {
         this.setState({
-            showCarsList: false,
-            showUserRentalHistory: true,
-            showUserCurrentRental: false,
-            showUserFAQPage: false,
-            showUserRentCar: false,
+            car: carDetails
+        }, () => {
+            this.setState({
+                showCarsList: false,
+                showUserRentalHistory: false,
+                showUserCurrentRental: false,
+                showUserFAQPage: false,
+                showUserRentCar: true,
+            });
         })
     }
 
@@ -116,11 +131,21 @@ class UserHomepage extends Component {
                     <a onClick={this.handleRentalHistory}>Rental History</a>
                 </div>
                 <div className="content-userpage">
-                    <UserCarsList show={this.state.showCarsList}/>
+                    <UserCarsList
+                        show={this.state.showCarsList}
+                        cars={this.state.cars}
+                        handleDetails={this.handleDetailsClick}
+                    />
                     <UserRentalHistory show={this.state.showUserRentalHistory}/>
                     <UserCurrentRental show={this.state.showUserCurrentRental}/>
-                    <UserFAQPage show={this.state.showUserFAQPage} questions={this.state.questions}/>
-                    <UserRentCar show={this.state.showUserRentCar}/>
+                    <UserFAQPage
+                        show={this.state.showUserFAQPage}
+                        questions={this.state.questions}
+                    />
+                    <UserRentCar
+                        show={this.state.showUserRentCar}
+                        car={this.state.car}
+                    />
                 </div>
             </div>
         );
