@@ -1,28 +1,21 @@
 import React, {Component} from 'react';
-import './UserFAQPage.css';
+import './UserRentCar.css';
 import '../../common_css/UserNavbar.css';
 import '../../common_css/UserSidebar.css';
 
 import {withRouter} from "react-router-dom";
 
-class UserFAQPage extends Component {
+class UserRentCar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             email: this.props.location.state.email,
-            questions: [],
         }
     }
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            questions: this.props.questions,
-        })
     }
 
     render() {
@@ -35,10 +28,10 @@ class UserFAQPage extends Component {
 
         return (
             <div className="page display-block">
-                FAQ
+                rent car
             </div>
         )
     }
 }
 
-export default withRouter(UserFAQPage);
+export default withRouter(UserRentCar);

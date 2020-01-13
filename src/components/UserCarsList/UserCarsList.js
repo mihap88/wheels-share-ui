@@ -28,7 +28,7 @@ class UserCarsList extends Component {
 
         return (
             <div className="page display-block">
-                UserCarsList
+                cars
             </div>
         )
     }
