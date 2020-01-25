@@ -2,4 +2,6 @@
     padding-left: 250px;
     padding-top: 60px;
     background-image: linear-gradient(to bottom, #fff5e6, #ffd699);
+    height: auto;
+    min-height: 1000px;
 }

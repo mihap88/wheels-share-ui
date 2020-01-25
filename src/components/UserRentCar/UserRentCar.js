@@ -61,6 +61,10 @@ class UserRentCar extends Component {
                         <div className="rent-car-date-picker">
                             <LinkedCalendar onDatesChange={this.handleDateChange} showDropdowns={false}/>
                         </div>
+                        <div className="rent-car-price">
+                            Price per day: ${this.state.car.pricePerDay}
+                        </div>
+                        <button className="rent-button">Rent Car</button>
                     </div>
 
                 </div>

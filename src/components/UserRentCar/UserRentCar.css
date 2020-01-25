@@ -40,8 +40,28 @@
     text-align: left;
 }
 
+.rent-car-right {
+    margin-left: 70px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
 .rent-car-date-picker {
-    width: 100px;
-    height: 100px;
     z-index: 0;
+    cursor: pointer;
+}
+
+.rent-car-price {
+    margin-top: 20px;
+    z-index: 10;
+    text-align: left;
+    color: green;
+    font-weight: bold;
+}
+
+.rent-button {
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
 }
