@@ -5,6 +5,8 @@ import '../../common_css/UserSidebar.css';
 import {LinkedCalendar} from 'rb-datepicker';
 
 import {withRouter} from "react-router-dom";
+import {WHEELS_SHARE_SERVICE} from "../../App";
+import axios from "axios";
 
 class UserRentCar extends Component {
 
@@ -13,6 +15,7 @@ class UserRentCar extends Component {
         this.state = {
             email: this.props.location.state.email,
             car: {},
+            rentPeriod: "",
         }
     }
 
@@ -27,7 +30,39 @@ class UserRentCar extends Component {
     }
 
     handleDateChange = (e) => {
-        debugger;
+        const startMonth = e.startDate.$M <= 9 ? "0" + (e.startDate.$M + 1) : (e.startDate.$M + 1);
+        const endMonth = e.endDate.$M <= 9 ? "0" + (e.endDate.$M + 1) : (e.endDate.$M + 1);
+        this.setState( {
+            rentPeriod: e.startDate.$y + "-" + startMonth + "-" +  e.startDate.$D + "/" + e.endDate.$y + "-" + endMonth + "-" + e.endDate.$D,
+        })
+    }
+
+    handleRentCar = (e) => {
+        if (this.state.rentPeriod === "") {
+            return;
+        }
+
+        const cars_request_url = WHEELS_SHARE_SERVICE + '/rent';
+
+        const postData = {
+            carId: this.state.car.id,
+            rentPeriod: this.state.rentPeriod,
+            userEmailAddress: this.state.email,
+            price: this.state.car.pricePerDay,
+            ongoing: false,
+        };
+
+        axios.post(cars_request_url, postData,{timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    if (response.data) {
+                        document.getElementById("rentResult").innerHTML = "Car rented successfully!";
+                    } else {
+                        document.getElementById("rentResult").innerHTML = "Unable to rent car. Please try another period.";
+                    }
+
+                }
+            });
     }
 
     render() {
@@ -59,12 +94,13 @@ class UserRentCar extends Component {
                     </div>
                     <div className={"rent-car-right"}>
                         <div className="rent-car-date-picker">
-                            <LinkedCalendar onDatesChange={this.handleDateChange} showDropdowns={false}/>
+                            <LinkedCalendar onDatesChange={this.handleDateChange} showDropdowns={true}/>
                         </div>
                         <div className="rent-car-price">
                             Price per day: ${this.state.car.pricePerDay}
                         </div>
-                        <button className="rent-button">Rent Car</button>
+                        <button className="rent-button" onClick={this.handleRentCar}>Rent car</button>
+                        <div id="rentResult"></div>
                     </div>
 
                 </div>

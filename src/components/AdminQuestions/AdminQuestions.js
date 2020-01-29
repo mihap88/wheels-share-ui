@@ -29,7 +29,7 @@ class AdminQuestions extends Component {
 
     arrayRemove = (arr, value) => {
         return arr.filter(function (element) {
-            return element.id != value;
+            return element.id !== value;
         });
 
     }

@@ -9,7 +9,7 @@ import UserCurrentRental from "../UserCurrentRental/UserCurrentRental"
 import UserFAQPage from "../UserFAQPage/UserFAQPage"
 import UserCarsList from "../UserCarsList/UserCarsList"
 import UserRentCar from "../UserRentCar/UserRentCar"
-import {QUESTIONS_SERVICE, WHEELS_SHARE_SERVICE} from "../../App";
+import {WHEELS_SHARE_SERVICE} from "../../App";
 import axios from "axios";
 
 class UserHomepage extends Component {
@@ -23,9 +23,10 @@ class UserHomepage extends Component {
             showUserCurrentRental: false,
             showUserFAQPage: false,
             showUserRentCar: false,
+            currentRentals: [],
+            rentalsHistory: [],
             cars: [],
             car: {},
-
         }
     }
 
@@ -70,23 +71,48 @@ class UserHomepage extends Component {
     }
 
     handleCurrentRental = () => {
-        this.setState({
-            showCarsList: false,
-            showUserRentalHistory: false,
-            showUserCurrentRental: true,
-            showUserFAQPage: false,
-            showUserRentCar: false,
-        })
+        const current_rentals_url = WHEELS_SHARE_SERVICE + '/currentRentals/' + this.state.email;
+        axios.get(current_rentals_url, {timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    debugger;
+                    this.setState({
+                        currentRentals: response.data,
+                    });
+                }
+            })
+            .finally(() => {
+                this.setState({
+                    showCarsList: false,
+                    showUserRentalHistory: false,
+                    showUserCurrentRental: true,
+                    showUserFAQPage: false,
+                    showUserRentCar: false,
+                })
+            })
     }
 
-    handleRentalHistory = () => {
-        this.setState({
-            showCarsList: false,
-            showUserRentalHistory: true,
-            showUserCurrentRental: false,
-            showUserFAQPage: false,
-            showUserRentCar: false,
-        })
+    handleRentalsHistory = () => {
+        const rentals_history_url = WHEELS_SHARE_SERVICE + '/rentalsHistory/' + this.state.email;
+
+        axios.get(rentals_history_url, {timeout: 10000})
+            .then((response) => {
+                if (response.status === 200) {
+                    debugger;
+                    this.setState({
+                        rentalsHistory: response.data,
+                    });
+                }
+            })
+            .finally(() => {
+                this.setState({
+                    showCarsList: false,
+                    showUserRentalHistory: true,
+                    showUserCurrentRental: false,
+                    showUserFAQPage: false,
+                    showUserRentCar: false,
+                })
+            })
     }
 
     handleDetailsClick = (carDetails) => {
@@ -122,7 +148,7 @@ class UserHomepage extends Component {
                     <a onClick={this.handleHome}>Home</a>
                     <a onClick={this.handleFAQ}>FAQ</a>
                     <a onClick={this.handleCurrentRental}>Current rental</a>
-                    <a onClick={this.handleRentalHistory}>Rental History</a>
+                    <a onClick={this.handleRentalsHistory}>Rental History</a>
                 </div>
                 <div className="content-userpage">
                     <UserCarsList
@@ -130,8 +156,12 @@ class UserHomepage extends Component {
                         cars={this.state.cars}
                         handleDetails={this.handleDetailsClick}
                     />
-                    <UserRentalHistory show={this.state.showUserRentalHistory}/>
-                    <UserCurrentRental show={this.state.showUserCurrentRental}/>
+                    <UserRentalHistory
+                        cars={this.state.rentalsHistory}
+                        show={this.state.showUserRentalHistory}/>
+                    <UserCurrentRental
+                        cars={this.state.currentRentals}
+                        show={this.state.showUserCurrentRental}/>
                     <UserFAQPage
                         show={this.state.showUserFAQPage}
                     />

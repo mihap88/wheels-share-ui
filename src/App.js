@@ -8,8 +8,8 @@ import AdminHomePage from './components/AdminHomePage/AdminHomepage';
 import UserHomepage from './components/UserHomepage/UserHomepage';
 import './App.css';
 
-export const WHEELS_SHARE_SERVICE = 'http://172.20.10.4:8081/services/WheelsShareApp/api';
-export const QUESTIONS_SERVICE = 'http://172.20.10.4:8082/services/QuestionsService/api';
+export const WHEELS_SHARE_SERVICE = 'http://192.168.100.2:8081/services/WheelsShareApp/api';
+export const QUESTIONS_SERVICE = 'http://192.168.100.23:8082/services/QuestionsService/api';
 
 const Welcome = () => (
     <WelcomePage/>

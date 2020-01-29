@@ -28,7 +28,9 @@ class UserRentalHistory extends Component {
 
         return (
             <div className="page display-block">
-                RentalHistory
+                {this.state.cars.map((car, key) => {
+                    return this.renderCarDetail(car)
+                })}
             </div>
         )
     }
