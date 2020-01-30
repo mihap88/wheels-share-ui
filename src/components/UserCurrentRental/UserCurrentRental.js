@@ -19,6 +19,24 @@ class UserCurrentRental extends Component {
         console.log('user email: ' + this.state.email);
     }
 
+    componentWillReceiveProps(props) {
+        this.setState({
+            rentals: this.props.rentals
+        })
+    }
+
+    renderRentalDetails = (rental) => {
+        return (
+            <div className="rental-preview-container">
+                <div className="rental-detail-title">Car: {rental.id} Price: ${rental.price}</div>
+                <div className="rental-detail-content">
+                    <div>Start date: {rental.rentPeriod.split('/')[0]} End date: {rental.rentPeriod.split('/')[1]}</div>
+                    <div className="ongoing-rental">Ongoing</div>
+                </div>
+            </div>
+        );
+    };
+
     render() {
         if (!this.props.show) {
             return (
@@ -29,7 +47,11 @@ class UserCurrentRental extends Component {
 
         return (
             <div className="page display-block">
-                CurrentRental
+                <div className="user-rentals-page">
+                    {this.state.rentals.map((rental, key) => {
+                        return this.renderRentalDetails(rental)
+                    })}
+                </div>
             </div>
         )
     }

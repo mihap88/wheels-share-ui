@@ -75,7 +75,6 @@ class UserHomepage extends Component {
         axios.get(current_rentals_url, {timeout: 10000})
             .then((response) => {
                 if (response.status === 200) {
-                    debugger;
                     this.setState({
                         currentRentals: response.data,
                     });
@@ -157,10 +156,10 @@ class UserHomepage extends Component {
                         handleDetails={this.handleDetailsClick}
                     />
                     <UserRentalHistory
-                        cars={this.state.rentalsHistory}
+                        rentals={this.state.rentalsHistory}
                         show={this.state.showUserRentalHistory}/>
                     <UserCurrentRental
-                        cars={this.state.currentRentals}
+                        rentals={this.state.currentRentals}
                         show={this.state.showUserCurrentRental}/>
                     <UserFAQPage
                         show={this.state.showUserFAQPage}

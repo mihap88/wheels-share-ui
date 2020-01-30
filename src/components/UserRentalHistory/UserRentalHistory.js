@@ -11,12 +11,31 @@ class UserRentalHistory extends Component {
         super(props);
         this.state = {
             email: this.props.location.state.email,
+            rentals: this.props.rentals,
         }
     }
 
     componentDidMount() {
         console.log('user email: ' + this.state.email);
     }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            rentals: this.props.rentals
+        })
+    }
+
+    renderRentalDetails = (rental) => {
+        return (
+            <div className="rental-preview-container">
+                <div className="rental-detail-title">Car: {rental.id} Price: ${rental.price}</div>
+                <div className="rental-detail-content">
+                    <div>Start date: {rental.rentPeriod.split('/')[0]}    End date: {rental.rentPeriod.split('/')[1]}</div>
+                    <div>Ongoing: {rental.ongoing ? "YES" : "NO"}</div>
+                </div>
+            </div>
+        );
+    };
 
     render() {
         if (!this.props.show) {
@@ -28,9 +47,11 @@ class UserRentalHistory extends Component {
 
         return (
             <div className="page display-block">
-                {this.state.cars.map((car, key) => {
-                    return this.renderCarDetail(car)
-                })}
+                <div className="user-rentals-page">
+                    {this.state.rentals.map((rental, key) => {
+                        return this.renderRentalDetails(rental)
+                    })}
+                </div>
             </div>
         )
     }
