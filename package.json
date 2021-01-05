@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "rb-datepicker": "0.0.5",
     "react": "^16.3.2",
     "react-dates": "^21.6.0",
