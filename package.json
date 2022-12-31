@@ -12,7 +12,7 @@
     "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {
-    "react-scripts": "^3.3.0"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
